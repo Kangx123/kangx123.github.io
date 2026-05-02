@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Kéo Búa Bao VIP</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: radial-gradient(circle, #001a1a, #000);
+    color: #00ffcc;
+    text-align: center;
+}
+
+/* LOGIN */
+#login {
+    margin-top: 150px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #00ffcc;
+    background: transparent;
+    color: #00ffcc;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #00ffcc;
+    color: black;
+}
+
+/* MAIN */
+#main {
+    display: none;
+}
+
+.title {
+    font-size: 30px;
+    margin-top: 30px;
+    text-shadow: 0 0 15px #00ffcc;
+}
+
+.result {
+    font-size: 60px;
+    margin-top: 50px;
+    text-shadow: 0 0 20px #00ff00;
+}
+</style>
+
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+    <h1>⚡ OAN TU TI SIEU VIP MAX PRO ⚡</h1>
+    <input id="key" placeholder="Nhập key VIP...">
+    <button onclick="login()">Đăng nhập</button>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+    <div class="title">AI SYSTEM GTA5VN - AUTO ANALYSIS</div>
+
+    <div class="result" id="result">---</div>
+
+    <p>👉 Nhấn SPACE để random</p>
+</div>
+
+<script>
+const correctKey = "0946297949";
+
+function login() {
+    let key = document.getElementById("key").value;
+    if (key === correctKey) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main").style.display = "block";
+    } else {
+        alert("Sai key!");
+    }
+}
+
+const choices = ["KÉO ✌️", "BÚA ✊", "BAO ✋"];
+
+document.addEventListener("keydown", function(e) {
+    if (e.code === "Space") {
+        e.preventDefault(); // tránh scroll trang
+
+        let random = Math.floor(Math.random() * 3);
+        document.getElementById("result").innerText = choices[random];
+    }
+});
+</script>
+
+</body>
+</html>
