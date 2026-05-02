@@ -34,11 +34,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background: #00ffcc;
-    color: black;
-}
-
 /* MAIN */
 #main {
     display: none;
@@ -50,9 +45,15 @@ button:hover {
     text-shadow: 0 0 15px #00ffcc;
 }
 
+.info {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #00ffaa;
+}
+
 .result {
     font-size: 60px;
-    margin-top: 50px;
+    margin-top: 40px;
     text-shadow: 0 0 20px #00ff00;
 }
 </style>
@@ -71,9 +72,13 @@ button:hover {
 <div id="main">
     <div class="title">AI SYSTEM GTA5VN - AUTO ANALYSIS</div>
 
+    <div class="info" id="info">
+        Tài khoản: Kang X | Đang tải giờ...
+    </div>
+
     <div class="result" id="result">---</div>
 
-    <p>👉 Nhấn SPACE để random</p>
+    <p>👉 Nhấn SPACE để bắt đầu</p>
 </div>
 
 <script>
@@ -84,17 +89,27 @@ function login() {
     if (key === correctKey) {
         document.getElementById("login").style.display = "none";
         document.getElementById("main").style.display = "block";
+        updateTime();
     } else {
         alert("Sai key!");
     }
 }
 
+// cập nhật giờ VN
+function updateTime() {
+    setInterval(() => {
+        let now = new Date();
+        let timeVN = now.toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+        document.getElementById("info").innerText = "Tài khoản: Kang X | " + timeVN;
+    }, 1000);
+}
+
+// random kéo búa bao
 const choices = ["KÉO ✌️", "BÚA ✊", "BAO ✋"];
 
 document.addEventListener("keydown", function(e) {
     if (e.code === "Space") {
-        e.preventDefault(); // tránh scroll trang
-
+        e.preventDefault();
         let random = Math.floor(Math.random() * 3);
         document.getElementById("result").innerText = choices[random];
     }
